@@ -14,8 +14,6 @@ class Solution:
                     curr = first + "." + last
 
                 converted = "{:.10f}".format(float(curr)).rstrip("0").rstrip(".")
-                print("curr: ", curr)
-                print("converted: ", converted)
                 if float(int(float(curr))) == float(curr):
                     if len(str(int(float(curr)))) == len(curr):
                         arr.append(curr)
