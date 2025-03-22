@@ -21,7 +21,6 @@ class Solution:
             powers = -1
             curr_divisor = divisor
             while curr_divisor >= half and curr_divisor * 2 >= dividend:
-                print(curr_divisor)
                 powers *= 2
                 curr_divisor *= 2
             
