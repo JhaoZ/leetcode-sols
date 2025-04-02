@@ -1,15 +1,19 @@
 class Solution:
     def putMarbles(self, weights: List[int], k: int) -> int:
-        if k == 1:
-            return 0
-        
-        pair_sums = []
+        score = weights[0] + weights[-1]
+        costs_min = []
+        costs_max = []
+
         for i in range(len(weights) - 1):
-            pair_sums.append(weights[i] + weights[i + 1])
+            curr_cost = weights[i] + weights[i + 1]
+            heapq.heappush(costs_min, -curr_cost)
+            heapq.heappush(costs_max, curr_cost)
+            if len(costs_min) > k - 1:
+                heapq.heappop(costs_min)
+            if len(costs_max) > k - 1:
+                heapq.heappop(costs_max)
         
-        pair_sums.sort()
+        return (sum(costs_max)+ score) - (abs(sum(costs_min)) + score)
+            
         
-        min_score = sum(pair_sums[:k-1])
-        max_score = sum(pair_sums[-(k-1):])
         
-        return max_score - min_score
