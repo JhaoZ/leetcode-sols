@@ -32,9 +32,9 @@ class Solution:
                 stack.append(next_hop)
             else:
                 stack.pop()
-                path.insert(0, curr)
-                
-        return path
+                path.append(curr)
+
+        return path[::-1]
 
 
         
