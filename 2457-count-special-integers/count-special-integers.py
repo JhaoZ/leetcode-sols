@@ -18,7 +18,7 @@ class Solution:
                 next_started = started or (i != 0)
                 next_mask = mask | (1 << i)
 
-                if not started and i == 0:
+                if not next_started:
                     repeat = False
                     next_mask = mask
                 
