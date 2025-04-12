@@ -21,8 +21,6 @@ class Solution:
 
         count = 0
 
-        print(pals)
-
         for pal in pals:
             freq = Counter(pal)
             denom = 1
