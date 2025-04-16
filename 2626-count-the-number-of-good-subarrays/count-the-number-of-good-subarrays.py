@@ -11,10 +11,8 @@ class Solution:
                 end += 1
             
             if count >= k:
-                print(end)
                 ans += len(nums) - (end - 1)
 
-            
             freq[nums[start]] -= 1
             count -= freq[nums[start]]
         return ans
