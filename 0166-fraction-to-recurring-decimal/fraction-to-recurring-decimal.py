@@ -28,7 +28,6 @@ class Solution:
         dup = False
         while curr != 0:
             curr =  curr * 10 
-            print(curr)
             if curr in seen:
                 dup = True
                 break
