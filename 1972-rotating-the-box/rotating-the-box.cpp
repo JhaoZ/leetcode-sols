@@ -2,11 +2,7 @@ class Solution {
 public:
 
     void dropdown(vector<vector<char>>& grid, int i, int j) {
-        while (i + 1 < grid.size() && grid[i + 1][j] == '.') {
-            grid[i][j] = '.';
-            grid[i + 1][j] = '#';
-            i++;
-        }
+        
     }
 
     vector<vector<char>> rotateTheBox(vector<vector<char>>& boxGrid) {
@@ -20,7 +16,15 @@ public:
 
         for (int i = res.size() - 1; i >= 0; --i) {
             for (int j = 0; j < res[i].size(); ++j) {
-                if (res[i][j] == '#') dropdown(res, i, j);
+                if (res[i][j] == '#') {
+                    int ii = i;
+                    int jj = j;
+                    while (ii + 1 < res.size() && res[ii + 1][j] == '.') {
+                        res[ii][jj] = '.';
+                        res[ii + 1][jj] = '#';
+                        ii++;
+                    }
+                }
             }
         }
 
