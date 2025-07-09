@@ -2,7 +2,6 @@ class Solution:
     def maxFreeTime(self, eventTime: int, k: int, startTime: List[int], endTime: List[int]) -> int:
         empty_spots = [0]
         events = [[startTime[i], endTime[i]] for i in range(len(startTime))]
-        events.sort()
         prev_time = 0
         for s, e in events:
             gap = s - prev_time
