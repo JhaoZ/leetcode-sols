@@ -12,7 +12,6 @@ class Solution:
             empty_spots.append(empty_spots[-1] + gap)
             prev_time = e
         if eventTime - prev_time:
-            print(eventTime - prev_time)
             empty_spots.append(empty_spots[-1] + (eventTime - prev_time))
         
         if k >= len(empty_spots) - 1:
