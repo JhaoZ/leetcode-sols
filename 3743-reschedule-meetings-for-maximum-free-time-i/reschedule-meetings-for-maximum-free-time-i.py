@@ -3,9 +3,6 @@ class Solution:
         empty_spots = [0]
         events = [[startTime[i], endTime[i]] for i in range(len(startTime))]
         events.sort()
-        
-        print(events)
-
         prev_time = 0
         for s, e in events:
             gap = s - prev_time
@@ -20,7 +17,5 @@ class Solution:
         ans = 0
         for i in range(k + 1, len(empty_spots)):
             ans = max(ans, empty_spots[i] - empty_spots[i - k - 1])
-        
-
 
         return ans
