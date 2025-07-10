@@ -11,7 +11,6 @@ public:
 
         std::vector<cand> cands;
         int prev_space = -1;
-        int blocked = 0;
         int prev = 0;
         for (int i = 0; i < startTime.size(); ++i) {
             int curr_start = startTime[i];
@@ -20,12 +19,11 @@ public:
             if (prev_space != -1) {
                 cands.push_back({prev_space, curr_start - prev, endTime[i - 1] - startTime[i - 1]});
             }
-            blocked = endTime[i ] - startTime[i];
             prev_space = curr_start - prev;
             prev = curr_end;
         }
         spaces.insert(eventTime - prev);
-        cands.push_back({prev_space, eventTime - prev, blocked});
+        cands.push_back({prev_space, eventTime - prev, endTime[startTime.size() - 1] - startTime[startTime.size() - 1]});
 
         int ans = 0;
         for (const auto& cand : cands) {
