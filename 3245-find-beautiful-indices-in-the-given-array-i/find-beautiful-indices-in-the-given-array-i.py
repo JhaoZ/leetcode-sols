@@ -3,8 +3,6 @@ class Solution:
         a_idx = [i for i in range(len(s) - len(a) + 1) if s[i:i+len(a)] == a]
         b_idx = [i for i in range(len(s) - len(b) + 1) if s[i:i+len(b)] == b]
         ans = []
-        print(a_idx)
-        print(b_idx)
         if not b_idx or not a_idx:
             return ans
         for idx in a_idx:
