@@ -1,32 +1,31 @@
+from typing import List
+
 class Solution:
     def ipToCIDR(self, ip: str, n: int) -> List[str]:
-        ans = []
+        def ip_to_int(s: str) -> int:
+            x = 0
+            for part in s.split("."):
+                x = (x << 8) + int(part)
+            return x
 
-        curr_ip = 0
-        for num in ip.split("."):
-            curr_ip = curr_ip * 256 + int(num)
+        def int_to_ip(x: int) -> str:
+            return ".".join(str((x >> (8 * i)) & 255) for i in range(3, -1, -1))
 
-        def ip_to_str(ip_addr):
-            return ".".join(str((ip_addr >> (8 * i)) & 255) for i in range(3, -1, -1))
-
-       
+        curr = ip_to_int(ip)
+        ans: List[str] = []
 
         while n > 0:
-            # fill next block
-            max_range = curr_ip & -curr_ip   # alignment constraint
+            lowbit = curr & -curr                 # 0 only when curr == 0
+            # align exponent (k). If lowbit == 0, pretend it's 2^32 so k=32.
+            align_exp = (lowbit.bit_length() - 1) if lowbit else 32
+            rem_exp = n.bit_length() - 1          # m = floor(log2(n))
+            exp = min(align_exp, rem_exp)
 
-            if max_range == 0:   # special case for 0.0.0.0
-                max_range = 1 << 32
-            while max_range > n:             # don’t exceed what’s left
-                max_range //= 2
-            block_size = max_range
+            block_size = 1 << exp                 # 2^exp
+            mask_len = 32 - exp                   # since 2^(32-mask) = block_size
 
-            
-            mask_len = 32 - (block_size.bit_length() - 1)
-
-           
-            ans.append(f'{ip_to_str(curr_ip)}/{mask_len}')
-
+            ans.append(f"{int_to_ip(curr)}/{mask_len}")
+            curr += block_size
             n -= block_size
-            curr_ip += block_size
+
         return ans
