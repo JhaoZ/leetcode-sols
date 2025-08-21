@@ -21,7 +21,6 @@ class Solution:
                 max_range //= 2
             block_size = max_range
 
-            block_size = min(n, max_range)
             
             mask_len = 32 - (block_size.bit_length() - 1)
 
